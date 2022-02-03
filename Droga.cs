@@ -21,6 +21,8 @@ namespace PW_Projekt_v5
             animacja.Wait();
             if (pojemnosc != licznik)
             {
+                Samochod temp = new(window, this);
+                await temp.wjedz();
                 samochody[licznik] = new(window, this);
                 //await samochody[licznik].wjedz();
                 licznik++;

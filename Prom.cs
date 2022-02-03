@@ -24,6 +24,13 @@ namespace PW_Projekt_v5
         bool strona;
         public void usunSamochod()
         {
+            Samochod temp;
+            if (strona == drogaLewa.Strona)
+                 temp = new(window, drogaLewa);
+            else
+                 temp = new(window, drogaPrawa);
+
+            temp.wyjedz();
             samochody[licznik] = null;
             licznik--;
 
@@ -95,7 +102,8 @@ namespace PW_Projekt_v5
                     usuwanie.Wait();
 
                     Console.WriteLine($"Usunieto samochod");
-                      usunSamochod();
+
+                usunSamochod();
                 await Task.Delay(1000);
                      usuwanie.Release();
                 }
@@ -115,6 +123,7 @@ namespace PW_Projekt_v5
             this.plyn();
 
         }
+
         public void dobijPrawo()
         {
             stronaPrawa.Release();
