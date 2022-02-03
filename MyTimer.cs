@@ -58,7 +58,7 @@ namespace PW_Projekt_v5
                 drogaLewa.dodajSamochodNaProm();
             }
             //Zapelniona jest droga po prawej stronie i statek jest na lewej stronie ORAZ NA DRODZE PRAWEJ NIE MA 3 SAMOCHODOW
-            if (drogaLewa.Licznik != 3 && drogaPrawa.Licznik==3 && (prom.stronaLewa.CurrentCount == 1 && prom.stronaPrawa.CurrentCount == 0))
+            if (drogaLewa.Licznik != 3 && drogaPrawa.Licznik==3 && (prom.stronaLewa.CurrentCount == 1 && prom.stronaPrawa.CurrentCount == 0) && !(prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 0))
             {
                 Console.WriteLine("Prom jest po lewej stronie a po prawej jest max");
                 temp = prom.Licznik;
@@ -72,7 +72,7 @@ namespace PW_Projekt_v5
 
             }
             //Zapelniona jest droga po lewej stronie i statek jest na prawej stronie ORAZ NA DRODZE LEWEJ NIE MA 3 SAMOCHODOW
-            if (drogaPrawa.Licznik != 3 && drogaLewa.Licznik == 3 && (prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 1))
+            if (drogaPrawa.Licznik != 3 && drogaLewa.Licznik == 3 && (prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 1) && !(prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 0))
             {
                 Console.WriteLine("Prom jest po prawej stronie a po lewej jest max");
                 temp = prom.Licznik;

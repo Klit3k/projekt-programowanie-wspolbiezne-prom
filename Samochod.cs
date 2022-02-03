@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PW_Projekt_v5
@@ -11,6 +12,7 @@ namespace PW_Projekt_v5
         MainWindow window;
         Droga droga;
         Image car;
+
         public Samochod(MainWindow window, Droga droga)
         {
             this.droga = droga;
@@ -21,18 +23,22 @@ namespace PW_Projekt_v5
         {
             car = new();
             BitmapImage obraz = new BitmapImage();
-            obraz.BeginInit();
-            obraz.UriSource = new Uri("/car_3.png", UriKind.Relative);
-            obraz.EndInit();
+
             car.Width = 65;
             car.Height = 58;
             if (droga.Strona == true)
             {
+                obraz.BeginInit();
+                obraz.UriSource = new Uri("/car_3_r.png", UriKind.Relative);
+                obraz.EndInit();
                 car.SetValue(Grid.RowProperty, 1);
                 car.SetValue(Grid.ColumnProperty, 2);
             }
             else
             {
+                obraz.BeginInit();
+                obraz.UriSource = new Uri("/car_3.png", UriKind.Relative);
+                obraz.EndInit();
                 car.SetValue(Grid.RowProperty, 2);
                 car.SetValue(Grid.ColumnProperty, 0);
             }
@@ -41,18 +47,28 @@ namespace PW_Projekt_v5
         }
         public async Task wyjedz()
         {
+
             window.Dispatcher.Invoke(() =>
             {
+                BitmapImage obraz = new BitmapImage();
                 generujObraz();
+                
                 car.SetValue(Grid.ColumnSpanProperty, 2);
                 if (droga.Strona == true)
                 {
+                    obraz.BeginInit();
+                    obraz.UriSource = new Uri("/car_3.png", UriKind.Relative);
+                    obraz.EndInit();
                     car.SetValue(Grid.RowProperty, 2);
                 }
                 else
                 {
+                    obraz.BeginInit();
+                    obraz.UriSource = new Uri("/car_3_r.png", UriKind.Relative);
+                    obraz.EndInit();
                     car.SetValue(Grid.RowProperty, 1);
                 }
+                car.Source = obraz;
 
                 window.kratownica.Children.Add(car);
             });
@@ -99,6 +115,7 @@ namespace PW_Projekt_v5
             });
             if (droga.Strona == true) //wjazd na prawa droge
             {
+
                 switch (droga.Licznik)
                 {
                     case 0:
@@ -163,11 +180,11 @@ namespace PW_Projekt_v5
                 {
                     case 0:
                         {
-                            for (int i = -200; i < 212; i += 10)
+                            for (int i = -370; i < 212; i += 10)
                             {
                                 window.Dispatcher.Invoke(() =>
                                 {
-                                    car.Margin = new System.Windows.Thickness(i, -15, 0, 0);
+                                    car.Margin = new System.Windows.Thickness(i, -15, -5, 0);
                                 });
                                 await Task.Delay(2);
                             }
@@ -180,11 +197,11 @@ namespace PW_Projekt_v5
                         break;
                     case 1:
                         {
-                            for (int i = -200; i < 0; i += 10)
+                            for (int i = -370; i < 0; i += 10)
                             {
                                 window.Dispatcher.Invoke(() =>
                                 {
-                                    car.Margin = new System.Windows.Thickness(i, -15, 0, 0);
+                                    car.Margin = new System.Windows.Thickness(i, -15, -5, 0);
                                 });
                                 await Task.Delay(2);
                             }
@@ -197,11 +214,11 @@ namespace PW_Projekt_v5
                         break;
                     case 2:
                         {
-                            for (int i = -200; i < -212; i += 10)
+                            for (int i = -370; i < -212; i += 10)
                             {
                                 window.Dispatcher.Invoke(() =>
                                 {
-                                    car.Margin = new System.Windows.Thickness(i, -15, 0, 0);
+                                    car.Margin = new System.Windows.Thickness(i, -15, -5, 0);
                                 });
                                 await Task.Delay(2);
                             }
