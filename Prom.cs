@@ -50,14 +50,14 @@ namespace PW_Projekt_v5
                 Console.Write($"Plyne");
                 await Task.Run(async () =>
                 {
-                    for (int i = -150; i < 150; i += 2)
+                    for (int i = -60; i < 60; i += 2)
                     {
                         window.Dispatcher.Invoke((Action)(async () =>
                         {
 
                             window.Dispatcher.Invoke(() =>
                             {
-                                window.promyk.Margin = new Thickness(0, 0, i, 0);
+                                window.promyk.Margin = new Thickness(-i, 0, i, 30);
                             });
                         }));
                         await Task.Delay(1);
@@ -72,14 +72,14 @@ namespace PW_Projekt_v5
                 Console.WriteLine($"Plyne...");
                 await Task.Run(async () =>
                 {
-                    for (int i = -150; i < 150; i += 2)
+                    for (int i = -60; i < 60; i += 2)
                     {
                         window.Dispatcher.Invoke((Action)(async () =>
                         {
 
                             window.Dispatcher.Invoke(() =>
                             {
-                                window.promyk.Margin = new Thickness(i, 0, 0, 0);
+                                window.promyk.Margin = new Thickness(i, 0, -i, 30);
                             });
                         }));
                         await Task.Delay(1);
@@ -123,7 +123,6 @@ namespace PW_Projekt_v5
             this.plyn();
 
         }
-
         public void dobijPrawo()
         {
             stronaPrawa.Release();

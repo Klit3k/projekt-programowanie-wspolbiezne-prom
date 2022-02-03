@@ -19,10 +19,9 @@
             <RowDefinition Height="15*"/>
             <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
-        <!-- Prom -->
-        <DockPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Width="70" Height="80" Background="Coral" Margin="148,0,0,0" x:Name="promyk">
-            <TextBlock x:Name="prom_licznik" Background="Transparent" Text="0" FontSize="48"  TextAlignment="Center" Margin="0,5,0,0" Foreground="White"></TextBlock>
-        </DockPanel>
+        <Image Source="/water2.png" Grid.Column="1" Grid.Row="0" Stretch="Fill" />
+        <Image Source="/water2.png" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Stretch="Fill" />
+        <Image Source="/water2.png" Grid.Column="1" Grid.Row="3" Stretch="Fill" />
 
         <!--    Trawa po bokach    -->
         <Image Grid.Column="0" Grid.Row="0" Stretch="Fill" Source="/grass.jpg"  Grid.RowSpan="2"/>
@@ -35,21 +34,25 @@
         <Image Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Stretch="Fill" Source="/road.png" />
 
         <!-- Dodaj Lewo -->
-        <Border  Grid.Column="0" Grid.Row="0" BorderBrush="White" BorderThickness="3"  Margin="15,13,217,97" x:Name="lewyPrzycisk" MouseLeftButtonDown="lewyPrzycisk_MouseLeftButtonDown" MouseLeftButtonUp="lewyPrzycisk_MouseLeftButtonUp" >
-            <TextBlock TextWrapping="Wrap" Text="+" FontSize="47" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-23,0,0" Foreground="White" />
+        <Border  Grid.Column="0" Height="40" Width="50" Grid.Row="0" BorderBrush="White" BorderThickness="3"  Margin="15,13,217,80" x:Name="lewyPrzycisk" MouseLeftButtonDown="lewyPrzycisk_MouseLeftButtonDown" MouseLeftButtonUp="lewyPrzycisk_MouseLeftButtonUp" >
+            <TextBlock TextWrapping="Wrap" Text="+" FontSize="47" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-20,0,0" Foreground="White" />
         </Border>
 
         <!-- Dodaj Prawo -->
-        <Border  Grid.Column="2" Grid.Row="0" BorderBrush="White" BorderThickness="3" Margin="217,12,15,98"   x:Name="prawyPrzycisk"  MouseLeftButtonDown="prawyPrzycisk_MouseLeftButtonDown"  MouseLeftButtonUp="prawyPrzycisk_MouseLeftButtonUp">
-            <TextBlock  TextWrapping="Wrap" Text="+" FontSize="47" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-23,0,0" Foreground="White" />
+        <Border  Grid.Column="2" Grid.Row="0" Height="40" Width="50"  BorderBrush="White" BorderThickness="3" Margin="217,12,15,80"   x:Name="prawyPrzycisk"  MouseLeftButtonDown="prawyPrzycisk_MouseLeftButtonDown"  MouseLeftButtonUp="prawyPrzycisk_MouseLeftButtonUp">
+            <TextBlock  TextWrapping="Wrap" Text="+" FontSize="47" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-20,0,0" Foreground="White" />
         </Border>
+        <!-- Prom -->
+        <Image Source="/statek2.png" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,60,30" x:Name="promyk"/>
+        <TextBlock x:Name="prom_licznik" Grid.Row="3" Grid.Column="0" Background="Transparent" Text="0" FontSize="50" Width="150"  TextAlignment="Right" FontFamily="Bold" Margin="30,50,0,0" Foreground="White"/>
+        <TextBlock  Grid.Row="3" Grid.Column="0" Text="Liczba samochodów na promie: " Background="Transparent"  FontSize="24" Width="150" TextWrapping="Wrap" TextAlignment="Left" Margin="-50,30,0,0" Foreground="White"/>
 
-        <!-- Licznik prawo -->
+        <!-- Licznik prawo 
         <TextBlock Grid.Column="2" FontSize="24" FontWeight="Bold" Foreground="White" Text="loading..." Grid.Row="4" HorizontalAlignment="Center" Margin="0,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  x:Name="licznik_prawo"/>
-
-        <!-- Licznik lewo -->
+        -->
+        <!-- Licznik lewo 
         <TextBlock FontSize="24" FontWeight="Bold" Foreground="White" Text="loading..." Grid.Row="4" HorizontalAlignment="Center" Margin="0,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  x:Name="licznik_lewo"/>
-
+        -->
         <!-- Zegar -->
         <Border Grid.Column="1" BorderBrush="Wheat" BorderThickness="2" Height="40" Width="140" Margin="0,20,0,0" VerticalAlignment="Top" >
             <TextBlock  FontSize="24" FontWeight="Bold" Foreground="White" Text="loading..." Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap"  x:Name="zegar"/>
@@ -89,14 +92,16 @@
             </Image.RenderTransform>
         </Image>
 
+
         <!-- SAMOCHOD 1 OD PRAWEJ | LEWA STRONA -->
         <Image Source="/car_3.png" Grid.Row="2" Height="58" Width="65" Grid.Column="0" Margin="212,-15,0,0" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" x:Name="l3"/>
         <!-- SAMOCHOD 2 OD PRAWEJ | LEWA STRONA -->
         <Image Source="/car_3.png" Grid.Row="2" Height="58" Width="65" Grid.Column="0" Margin="0,-15,0,0" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" x:Name="l2"/>
         <!-- SAMOCHOD 3 OD PRAWEJ | LEWA STRONA -->
         <Image Source="/car_3.png" Grid.Row="2" Height="58" Width="65" Grid.Column="0" Margin="-212,-15,0,0" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" x:Name="l1"/>
-
+    <!-- Pomocnicza fura
         <Image Source="/car_3_r.png" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" Height="58" Width="65" Margin="-370,6,0,6" RenderTransformOrigin="0.5,0.5" Visibility="Visible" x:Name="animka"/>
-
+    -->
+        
     </Grid>
 </Window>

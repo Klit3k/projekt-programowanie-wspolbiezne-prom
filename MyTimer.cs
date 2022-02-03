@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace PW_Projekt_v5
 {
@@ -11,7 +12,7 @@ namespace PW_Projekt_v5
         Prom prom;
         Droga drogaLewa, drogaPrawa;
         MainWindow window;
-        static int czas = 10;
+        static int czas = 20;
         int temp;
         int czas_remember = czas;
         int tryb;
@@ -46,33 +47,14 @@ namespace PW_Projekt_v5
         private async void fn(object state)
         {
             //Jezeli statek stoi po prawej stronie i na drodze sa samochody oraz nie trwa rozladunek
-            if (prom.rozladunek.CurrentCount!=0 && drogaPrawa.Licznik != 0 && prom.Strona == true && (prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 1))
+            if (prom.rozladunek.CurrentCount!=0 && drogaPrawa.Licznik != 0 && prom.Strona == true 
+                && (prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 1))
             {
-
                 drogaPrawa.dodajSamochodNaProm();
             }
-            //Jezeli statek stoi po lewej stronie i na drodze sa samochody
-            if (prom.rozladunek.CurrentCount != 0 && drogaLewa.Licznik != 0 && prom.Strona == false && (prom.stronaLewa.CurrentCount == 1 && prom.stronaPrawa.CurrentCount == 0))
-            {
-
-                drogaLewa.dodajSamochodNaProm();
-            }
-            //Zapelniona jest droga po prawej stronie i statek jest na lewej stronie ORAZ NA DRODZE PRAWEJ NIE MA 3 SAMOCHODOW
-            if (drogaLewa.Licznik != 3 && drogaPrawa.Licznik==3 && (prom.stronaLewa.CurrentCount == 1 && prom.stronaPrawa.CurrentCount == 0) && !(prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 0))
-            {
-                Console.WriteLine("Prom jest po lewej stronie a po prawej jest max");
-                temp = prom.Licznik;
-
-                for (int i = 0; i < Math.Abs(temp - prom.Pojemnosc); i++)
-                {
-                    Console.WriteLine($"Zwalniam i uciekam");
-                    while (prom.zaladunek.CurrentCount == 1) await Task.Delay(200);
-                    prom.zaladunek.Release();
-                }
-
-            }
-            //Zapelniona jest droga po lewej stronie i statek jest na prawej stronie ORAZ NA DRODZE LEWEJ NIE MA 3 SAMOCHODOW
-            if (drogaPrawa.Licznik != 3 && drogaLewa.Licznik == 3 && (prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 1) && !(prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 0))
+            //Zapelniona jest droga po lewej stronie i statek jest na prawej stronie ORAZ NA DRODZE PRAWEJ NIE MA 3 SAMOCHODOW
+            else if (drogaPrawa.Licznik != 3 && drogaLewa.Licznik == 3 && (prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 1)
+                && !(prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 0))
             {
                 Console.WriteLine("Prom jest po prawej stronie a po lewej jest max");
                 temp = prom.Licznik;
@@ -86,6 +68,30 @@ namespace PW_Projekt_v5
                 }
 
             }
+
+            //Jezeli statek stoi po lewej stronie i na drodze sa samochody
+            if (prom.rozladunek.CurrentCount != 0 && drogaLewa.Licznik != 0 && prom.Strona == false 
+                && (prom.stronaLewa.CurrentCount == 1 && prom.stronaPrawa.CurrentCount == 0))
+            {
+
+                drogaLewa.dodajSamochodNaProm();
+            }
+            //Zapelniona jest droga po prawej stronie i statek jest na lewej stronie ORAZ NA DRODZE LEWEJ NIE MA 3 SAMOCHODOW
+            else if (drogaLewa.Licznik != 3 && drogaPrawa.Licznik==3 && (prom.stronaLewa.CurrentCount == 1 && prom.stronaPrawa.CurrentCount == 0) 
+                && !(prom.stronaLewa.CurrentCount == 0 && prom.stronaPrawa.CurrentCount == 0))
+            {
+                Console.WriteLine("Prom jest po lewej stronie a po prawej jest max");
+                temp = prom.Licznik;
+
+                for (int i = 0; i < Math.Abs(temp - prom.Pojemnosc); i++)
+                {
+                    Console.WriteLine($"Zwalniam i uciekam");
+                    while (prom.zaladunek.CurrentCount == 1) await Task.Delay(200);
+                    prom.zaladunek.Release();
+                }
+
+            }
+            
         }
         private async void fn2(object state)
         {
@@ -115,9 +121,10 @@ namespace PW_Projekt_v5
         private async void fn3(object state)
         {
             window.Dispatcher.BeginInvoke(new Action(() => {
-                window.prom_licznik.Text = prom.Licznik.ToString();
-                window.licznik_lewo.Text = drogaLewa.Licznik.ToString();
-                window.licznik_prawo.Text = drogaPrawa.Licznik.ToString();
+                window.prom_licznik.Text = $"{prom.Licznik.ToString()}";
+                if (prom.Licznik == 3) window.prom_licznik.Foreground = Brushes.Blue; else window.prom_licznik.Foreground = Brushes.White;
+                //window.licznik_lewo.Text = drogaLewa.Licznik.ToString();
+                //window.licznik_prawo.Text = drogaPrawa.Licznik.ToString();
             }));
             switch (drogaPrawa.Licznik)
             {

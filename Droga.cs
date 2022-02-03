@@ -15,7 +15,6 @@ namespace PW_Projekt_v5
         string nazwa;
         int pojemnosc = 3;
         int licznik = 0;
-        int losuj;
         public async Task stworzSamochodAsync()
         {
             animacja.Wait();

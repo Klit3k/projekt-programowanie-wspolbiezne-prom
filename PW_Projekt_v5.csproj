@@ -21,6 +21,8 @@
     <None Remove="statek.png" />
     <None Remove="statek2.png" />
     <None Remove="statek3.png" />
+    <None Remove="water.png" />
+    <None Remove="water2.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +33,7 @@
     <Resource Include="road.png" />
     <Resource Include="statek2.png" />
     <Resource Include="statek3.png" />
+    <Resource Include="water2.png" />
   </ItemGroup>
 
 </Project>
